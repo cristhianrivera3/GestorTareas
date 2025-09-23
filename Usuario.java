@@ -3,7 +3,6 @@ public class Usuario {
     private String nombre ;
     private String email ;
     private String password ;
-    private String rol;//nuevo atributo
 
 
     public Usuario(int id, String nombre, String email, String password) {
@@ -12,7 +11,6 @@ public class Usuario {
         this.nombre = nombre; 
         this.email = email; 
         this.password = password;
-        this.rol = "normal";//por defecto
     }
 
 
@@ -46,19 +44,6 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol){
-        this.rol = rol;
-    }
-
-    public void cambiarPassword(String nuevaPassword) {
-        this.password = nuevaPassword;
-        System.out.println("Contraseña cambiada con exito:");
     }
 
     public void mostrarInfo() {

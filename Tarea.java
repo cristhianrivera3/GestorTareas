@@ -1,6 +1,6 @@
 
 
-import java.time.LocalDate;
+
 public class Tarea {
 
     private int id;
@@ -8,8 +8,6 @@ public class Tarea {
     private String descripcion;
     private String estado;
     private int usuarioId;
-    private final LocalDate fechaCreacion;//nuevo
-    private String prioridad;// nuevo
 
 
     public Tarea(int id, String titulo, String descripcion, String estado, int usuarioId) {
@@ -18,22 +16,7 @@ public class Tarea {
         this.descripcion = descripcion;
         this.estado = estado;
         this.usuarioId = usuarioId;
-        this.fechaCreacion = LocalDate.now();
-        this.prioridad = "Media";
     }
-
-    public String getPrioridad() {
-        return prioridad;
-    }
-
-    public void setPrioridad(String prioridad) {
-        this.prioridad = prioridad;
-    }
-
-    public void mostrarInfo() {
-        System.out.printf("ID: %d | Titulo: %s | Estado: %s | Prioridad: %s | Creada: %s%n", id, titulo, estado, prioridad, fechaCreacion);
-    }
-
 
     public int getId() {
         return id;
@@ -76,9 +59,9 @@ public class Tarea {
     }
 
 
-   
-        
-    
+    public void mostrarInfo() {
+        System.out.println("ID: " + id + " | Titulo: " + titulo + " | Estado: " + estado);
+    }
 
 
 }
