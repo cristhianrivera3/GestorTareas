@@ -26,7 +26,7 @@ public class Utils {
     }
 
     // Método para limpiar la consola (truco básico)
-    public static void limpiarConsola() {
+    public static void limpiarConsola() throws InterruptedException {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         } catch (IOException e) {
