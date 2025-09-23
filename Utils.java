@@ -29,7 +29,7 @@ public class Utils {
     public static void limpiarConsola() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             System.out.println("\n[!] No se pudo limpiar la consola.");
         }
     }
