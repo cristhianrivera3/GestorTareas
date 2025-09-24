@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Tareas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #eee;
+      margin: 0.5rem 0;
+      padding: 0.8rem;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .add-task {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gestor de Tareas</h1>
+  </header>
+  <div class="container">
+    <h2>Mis Tareas</h2>
+    <ul id="taskList">
+      <li>Ejemplo de tarea <button onclick="removeTask(this)">Eliminar</button></li>
+    </ul>
+    <div class="add-task">
+      <input type="text" id="newTask" placeholder="Nueva tarea...">
+      <button onclick="addTask()">Agregar</button>
+    </div>
+  </div>
+
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById('newTask');
+      const taskText = taskInput.value.trim();
+
+      if (taskText !== "") {
+        const li = document.createElement("li");
+        li.innerHTML = `${taskText} <button onclick="removeTask(this)">Eliminar</button>`;
+        document.getElementById("taskList").appendChild(li);
+        taskInput.value = "";
+      }
+    }
+
+    function removeTask(button) {
+      button.parentElement.remove();
+    }
+  </script>
+</body>
+</html>
