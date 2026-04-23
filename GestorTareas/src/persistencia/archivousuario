@@ -1,0 +1,51 @@
+package persistencia.ArchivoUsuarios;
+
+import Modelo.usuario.Usuario;
+import java.io.*;
+import java.util.ArrayList;
+
+public class ArchivoUsuarios {
+    private static final String ARCHIVO = "datos/usuarios.txt";
+
+    public static void guardar(ArrayList<Usuario> usuarios) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(ARCHIVO))) {
+            for (Usuario u : usuarios) {
+                writer.println(u.getId() + "," + u.getNombre() + "," + u.getEmail() + "," + u.getPassword());
+            }
+        } catch (IOException e) {
+            System.out.println("Error al guardar usuarios: " + e.getMessage());
+        }
+    }
+
+    public static ArrayList<Usuario> cargar() {
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        File archivo = new File(ARCHIVO);
+        if (!archivo.exists()) return usuarios;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] partes = linea.split(",");
+                if (partes.length == 4) {
+                    int id = Integer.parseInt(partes[0]);
+                    String nombre = partes[1];
+                    String email = partes[2];
+                    String password = partes[3];
+                    usuarios.add(new Usuario(id, nombre, email, password));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al cargar usuarios: " + e.getMessage());
+        }
+        return usuarios;
+    }
+
+    // Obtener el próximo ID disponible (el máximo + 1)
+    public static int obtenerProximoId(ArrayList<Usuario> usuarios) {
+        int max = 0;
+        for (Usuario u : usuarios) {
+            if (u.getId() > max) max = u.getId();
+        }
+        return max + 1;
+    }
+}
